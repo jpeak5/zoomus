@@ -123,7 +123,9 @@ class ApiClient(object):
         if data and not is_str_type(data):
             data = json.dumps(data)
         if headers is None and self.config.get('version') == API_VERSION_2:
-            headers = {'Authorization': 'Bearer {}'.format(self.config.get('token'))}
+            headers = {'Authorization': 'Bearer {}'.format(self.config.get('token')),
+            'Content-Type': 'application/json'}
+
         return requests.patch(
             self.url_for(endpoint),
             params=params,
@@ -171,7 +173,8 @@ class ApiClient(object):
         if data and not is_str_type(data):
             data = json.dumps(data)
         if headers is None and self.config.get('version') == API_VERSION_2:
-            headers = {'Authorization': 'Bearer {}'.format(self.config.get('token'))}
+            headers = {'Authorization': 'Bearer {}'.format(self.config.get('token')),
+            'Content-Type': 'application/json'}
         return requests.put(
             self.url_for(endpoint),
             params=params,
